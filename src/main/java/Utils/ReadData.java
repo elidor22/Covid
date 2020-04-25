@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadData {
-
     public List getDate() {
         return date;
     }
@@ -19,12 +18,26 @@ public class ReadData {
 
     List date = new ArrayList();
     List cases = new ArrayList();
-    public ReadData() {
+    public ReadData(boolean isConcern) {
 
-        String csvFile = "/home/elidor/Documents/CovidProject/updated_2.csv";
+        String csvFile = "/home/elidor/Documents/CovidProject/concern_levels.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
+        if(isConcern){
+            csvFile = "/home/elidor/Documents/CovidProject/concern_levels.csv";
+            br = null;
+            line = "";
+            cvsSplitBy = ",";
+        }
+        else if(!isConcern){
+            csvFile = "/home/elidor/Documents/CovidProject/updated_2.csv";
+            br = null;
+            line = "";
+            cvsSplitBy = ",";
+        }
+
+
 
 
         try {
@@ -33,10 +46,10 @@ public class ReadData {
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator
-                String[] country = line.split(cvsSplitBy);
+                String[] data = line.split(cvsSplitBy);
 
-                date.add(country[0]);
-                cases.add(country[1]);
+                date.add(data[0]);
+                cases.add(data[1]);
 
 
             }

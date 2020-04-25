@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.List;
 
 public class GraphicSample {
-    public static void main(String[] args) throws IOException {
+    public GraphicSample() throws IOException {
         JFreeChart chart = createChart(createDataset());
         SVGGraphics2D g2 = new SVGGraphics2D(600, 400);
         g2.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
@@ -82,23 +82,29 @@ public class GraphicSample {
 
     private static XYDataset createDataset(){
         //as Map<year, List>, where List contains mont and value for each year/key
+        System.out.println("Enter concern level");
+        Scanner sc = new Scanner(System.in);
+        boolean isConcern = false;
+        if(sc.nextInt()>=1)
+            isConcern =true;
+
         Map<Integer, List> mp = new HashMap<Integer, List>();
         List<String> day = new ArrayList();
         List<String> month = new ArrayList();
-        ReadData rd = new ReadData();
+        ReadData rd = new ReadData(isConcern);
         List<String> cases = new ArrayList();
 
-        dateElements dt = new dateElements();
+        dateElements dt = new dateElements(isConcern);
 
 
         cases=rd.getCases();
         day =dt.getDay();
         month = dt.getMonth();
 
-
-
-        TimeSeries s1 = new TimeSeries("Total cases");
-        //s1.add(new Day(1,5,2016),120);
+        String title ="Total cases";
+        if(isConcern)
+            title="Concern";
+        TimeSeries s1 = new TimeSeries(title);
         int i =1;
 
         while(i<day.size()){
@@ -107,13 +113,6 @@ public class GraphicSample {
            i++;
 
        }
-
-
-
-
-
-        //TimeSeries s2 = new TimeSeries("Concern levels");
-
 
 
 
