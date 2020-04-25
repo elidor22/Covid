@@ -6,20 +6,19 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.HorizontalAlignment;
+import org.jfree.data.time.Day;
 import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.graphics2d.svg.SVGGraphics2D;
 import org.jfree.graphics2d.svg.SVGUtils;
-
+import Utils.*;//imports all the util package scripts
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class GraphicSample {
     public static void main(String[] args) throws IOException {
@@ -35,8 +34,8 @@ public class GraphicSample {
     private static JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "COVID alert level",
-                null, "Yet to create a unit", dataset);
+                "COVID cases",
+                null, "Cases", dataset);
 
         String fontName = "Italic";
         chart.getTitle().setFont(new Font(fontName, Font.BOLD, 18));
@@ -84,44 +83,38 @@ public class GraphicSample {
     private static XYDataset createDataset(){
         //as Map<year, List>, where List contains mont and value for each year/key
         Map<Integer, List> mp = new HashMap<Integer, List>();
-        List ls = new ArrayList();
-        ls.add(0,1015);
-        ls.add(1,500);
-        ls.add(2,2015);
-        mp.put(1,ls);
+        List<String> day = new ArrayList();
+        List<String> month = new ArrayList();
+        ReadData rd = new ReadData();
+        List<String> cases = new ArrayList();
+
+        dateElements dt = new dateElements();
 
 
-        TimeSeries s1 = new TimeSeries("Test1");
-        s1.add(new Month(1,2016),120);
-        int i=0;
-        for (Map.Entry<Integer, List> entry : mp.entrySet()) {
-
-            Integer k = entry.getKey();
-            List v = entry.getValue();
-            int month = entry.getKey();
-            System.out.println("Key: " + k + ", Value: " + v);
-            s1.add(new Month(month, k+2016),(Integer) v.get(i));
-            i++;
-        }
+        cases=rd.getCases();
+        day =dt.getDay();
+        month = dt.getMonth();
 
 
-        ls.add(0,100);
-        ls.add(1,400);
-        ls.add(2,718);
-        mp.put(2,ls);
-        mp.put(3,ls);
-        TimeSeries s2 = new TimeSeries("TestNY");
-        //s2.add(new Month(1,2016),120);
-        int j = 0;
-        for (Map.Entry<Integer, List> entry2 : mp.entrySet()) {
 
-            Integer year = entry2.getKey();
-            List v = entry2.getValue();
-            int month = entry2.getKey();
-            System.out.println("Key: " + year + ", Value: " + v);
-            s2.add(new Month(month, year+2015),(Integer) v.get(j));
-            j++;
-        }
+        TimeSeries s1 = new TimeSeries("Total cases");
+        //s1.add(new Day(1,5,2016),120);
+        int i =1;
+
+        while(i<day.size()){
+           s1.add(new Day(Integer.parseInt(day.get(i)),
+                 Integer.parseInt(month.get(i-1)),2020),Integer.parseInt(cases.get(i)));
+           i++;
+
+       }
+
+
+
+
+
+        TimeSeries s2 = new TimeSeries("Concern levels");
+
+
 
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();

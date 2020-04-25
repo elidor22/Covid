@@ -9,14 +9,23 @@ import java.util.List;
 
 public class ReadData {
 
-    public static void main(String[] args) {
+    public List getDate() {
+        return date;
+    }
+
+    public List getCases() {
+        return cases;
+    }
+
+    List date = new ArrayList();
+    List cases = new ArrayList();
+    public ReadData() {
 
         String csvFile = "/home/elidor/Documents/CovidProject/updated_2.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
-        List ls = new ArrayList();
-        List countryl = new ArrayList();
+
 
         try {
 
@@ -26,13 +35,13 @@ public class ReadData {
                 // use comma as separator
                 String[] country = line.split(cvsSplitBy);
 
-                ls.add(country[0]);
-                countryl.add(country[1]);
+                date.add(country[0]);
+                cases.add(country[1]);
 
 
             }
-            System.out.println("Cases "+countryl.get(5));
-            System.out.println("Date "+ls.get(20));
+            //System.out.println("Cases "+ cases.get(1));
+           //System.out.println("Date "+ date.get(20));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -49,4 +58,6 @@ public class ReadData {
         }
 
     }
+
+
 }
