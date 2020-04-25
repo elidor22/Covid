@@ -103,7 +103,7 @@ public class GraphicSample {
 
         while(i<day.size()){
            s1.add(new Day(Integer.parseInt(day.get(i)),
-                 Integer.parseInt(month.get(i-1)),2020),Integer.parseInt(cases.get(i)));
+                 Integer.parseInt(month.get(i)),2020),Integer.parseInt(cases.get(i)));
            i++;
 
        }
@@ -112,14 +112,14 @@ public class GraphicSample {
 
 
 
-        TimeSeries s2 = new TimeSeries("Concern levels");
+        //TimeSeries s2 = new TimeSeries("Concern levels");
 
 
 
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(s1);
-        dataset.addSeries(s2);
+        //dataset.addSeries(s2);
         return dataset;
     }
 
