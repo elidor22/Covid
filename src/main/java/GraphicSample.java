@@ -1,4 +1,5 @@
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.XYPlot;
@@ -27,8 +28,10 @@ public class GraphicSample {
         g2.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
         Rectangle r = new Rectangle(0, 0, 600, 400);
         chart.draw(g2, r);
-        File f = new File("SVGTimeSeriesChartDemo1.svg");
-        SVGUtils.writeToSVG(f, g2.getSVGElement());
+        File f = new File("SVGTimeSeriesChartDemo1.jpg");
+
+        ChartUtils.saveChartAsJPEG(f,chart,600,400);
+        //SVGUtils.writeToSVG(f, g2.getSVGElement());
     }
 
     private static JFreeChart createChart(XYDataset dataset) {
