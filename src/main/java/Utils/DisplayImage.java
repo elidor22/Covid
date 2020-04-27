@@ -5,9 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 /*
  * To change this template, choose Tools | Templates
@@ -19,7 +17,10 @@ public class DisplayImage {
 
     public DisplayImage() throws IOException
     {
-        BufferedImage img=ImageIO.read(new File("/home/elidor/Documents/CovidProject/SVGTimeSeriesChartDemo1.jpg"));
+        //Returns the absolute path of the file
+        FileChooser fc = new FileChooser();
+        String path = fc.choose();
+        BufferedImage img=ImageIO.read(new File(path));
         ImageIcon icon=new ImageIcon(img);
         JFrame frame=new JFrame();
         frame.setLayout(new FlowLayout());
