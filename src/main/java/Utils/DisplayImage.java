@@ -18,16 +18,27 @@ public class DisplayImage {
     public DisplayImage() throws IOException
     {
         //Returns the absolute path of the file
-        FileChooser fc = new FileChooser();
-        String path = fc.choose();
-        BufferedImage img=ImageIO.read(new File(path));
+        /**
+         * If wanted, this can be used to display a newly created graphic*/
+        //FileChooser fc = new FileChooser();
+        //String path = fc.choose();
+        BufferedImage img=ImageIO.read(new File("/home/elidor/Documents/CovidProject/concern.jpg"));
+        BufferedImage img2=ImageIO.read(new File("/home/elidor/Documents/CovidProject/cases.jpg"));
         ImageIcon icon=new ImageIcon(img);
+        ImageIcon icon2=new ImageIcon(img2);
         JFrame frame=new JFrame();
         frame.setLayout(new FlowLayout());
-        frame.setSize(600,400);
+        frame.setSize(1600,500);
         JLabel lbl=new JLabel();
+        lbl.setBounds(0,0,600,400);
+
+        JLabel lbl2=new JLabel();
+        lbl2.setBounds(600,0,600,400);
+
         lbl.setIcon(icon);
+        lbl2.setIcon(icon2);
         frame.add(lbl);
+        frame.add(lbl2);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

@@ -24,12 +24,14 @@ public class ReadData {
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
+        //If we want concern data it provides the concern level csv
         if(isConcern){
             csvFile = "/home/elidor/Documents/CovidProject/concern_levels.csv";
             br = null;
             line = "";
             cvsSplitBy = ",";
         }
+        //Else provide cases
         else if(!isConcern){
             csvFile = "/home/elidor/Documents/CovidProject/updated_2.csv";
             br = null;

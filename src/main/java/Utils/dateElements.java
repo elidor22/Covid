@@ -3,6 +3,9 @@ package Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to return the wanted date format element
+ * ALso the datasets had different formats so this script handles those*/
 public class dateElements {
     List<String> day= new ArrayList<>();
 

@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 
+/**
+ * Chooses the file that we want to display*/
 public class FileChooser {
     JFileChooser chooser = new JFileChooser();
     public  String choose() {

@@ -22,6 +22,8 @@ import java.util.*;
 import java.util.List;
 
 public class GraphicSample {
+    public static String title ="COVID cases";
+    public static String unit = "Cases";
     public GraphicSample() throws IOException {
         JFreeChart chart = createChart(createDataset());
         SVGGraphics2D g2 = new SVGGraphics2D(600, 400);
@@ -37,8 +39,8 @@ public class GraphicSample {
     private static JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "COVID cases",
-                null, "Cases", dataset);
+                title,
+                null, unit, dataset);
 
         String fontName = "Italic";
         chart.getTitle().setFont(new Font(fontName, Font.BOLD, 18));
@@ -46,6 +48,8 @@ public class GraphicSample {
                 "Source: NYTimes",
                 new Font(fontName, Font.PLAIN, 16)));
 
+        /**
+         * Sets the chart look*/
         XYPlot plot = (XYPlot) chart.getPlot();
         plot.setDomainPannable(true);
         plot.setRangePannable(false);
@@ -84,7 +88,7 @@ public class GraphicSample {
     }
 
     private static XYDataset createDataset(){
-        //as Map<year, List>, where List contains mont and value for each year/key
+
         System.out.println("Enter concern level");
         Scanner sc = new Scanner(System.in);
         boolean isConcern = false;
@@ -105,11 +109,16 @@ public class GraphicSample {
         month = dt.getMonth();
 
         String title ="Total cases";
-        if(isConcern)
+        if(isConcern){
             title="Concern";
+            GraphicSample.title = "Concern levels";
+            GraphicSample.unit="Concern level";
+        }
+
         TimeSeries s1 = new TimeSeries(title);
         int i =1;
 
+        //Continues the loop till the all the data for the given days is added
         while(i<day.size()){
            s1.add(new Day(Integer.parseInt(day.get(i)),
                  Integer.parseInt(month.get(i)),2020),Integer.parseInt(cases.get(i)));
@@ -119,9 +128,9 @@ public class GraphicSample {
 
 
 
+        //Adds all the gathered information from above te the returned dataset
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(s1);
-        //dataset.addSeries(s2);
         return dataset;
     }
 
