@@ -33,7 +33,7 @@ public class ReadData {
         }
         //Else provide cases
         else if(!isConcern){
-            csvFile = "/home/elidor/Documents/CovidProject/updated_2.csv";
+            csvFile = "/home/elidor/Documents/CovidProject/new_cases.csv";
             br = null;
             line = "";
             cvsSplitBy = ",";
@@ -48,6 +48,7 @@ public class ReadData {
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator
+                /**A simple regex implementation to split the data and cases from each other*/
                 String[] data = line.split(cvsSplitBy);
 
                 date.add(data[0]);

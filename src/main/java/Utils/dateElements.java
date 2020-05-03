@@ -50,12 +50,12 @@ public class dateElements {
     }
 
     void cases(){
-        ReadData rd = new ReadData(false);
+        ReadData readData = new ReadData(false);
         String SplitBy = "-";
         String strings[]={""};
 
 
-        List ls = rd.getDate();
+        List ls = readData.getDate();
 
         for(int i=1;i< ls.size();i++) {
             String line = ls.get(i).toString();

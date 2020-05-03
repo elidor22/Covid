@@ -8,12 +8,10 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.HorizontalAlignment;
 import org.jfree.data.time.Day;
-import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.graphics2d.svg.SVGGraphics2D;
-import org.jfree.graphics2d.svg.SVGUtils;
 import Utils.*;//imports all the util package scripts
 import java.awt.*;
 import java.io.File;
@@ -21,10 +19,10 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class GraphicSample {
-    public static String title ="COVID cases";
+public class ChartGenerator {
+    public static String title ="COVID new cases";
     public static String unit = "Cases";
-    public GraphicSample() throws IOException {
+    public ChartGenerator() throws IOException {
         JFreeChart chart = createChart(createDataset());
         SVGGraphics2D g2 = new SVGGraphics2D(600, 400);
         g2.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
@@ -45,7 +43,7 @@ public class GraphicSample {
         String fontName = "Italic";
         chart.getTitle().setFont(new Font(fontName, Font.BOLD, 18));
         chart.addSubtitle(new TextTitle(
-                "Source: NYTimes",
+                "Source: ourworldindata.org/coronavirus-source-data",
                 new Font(fontName, Font.PLAIN, 16)));
 
         /**
@@ -108,11 +106,11 @@ public class GraphicSample {
         day =dt.getDay();
         month = dt.getMonth();
 
-        String title ="Total cases";
+        String title ="New Cases";
         if(isConcern){
             title="Concern";
-            GraphicSample.title = "Concern levels";
-            GraphicSample.unit="Concern level";
+            ChartGenerator.title = "Concern levels";
+            ChartGenerator.unit="Concern level";
         }
 
         TimeSeries s1 = new TimeSeries(title);
