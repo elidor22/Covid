@@ -53,6 +53,7 @@ public class DatabaseConnector {
         return candidateId;
     }
 
+    //Returns all the entries in the table
     public static ArrayList<String> queryAll() throws SQLException, SQLException {
         ArrayList<String> comments = new ArrayList<String>();
         try
@@ -78,10 +79,10 @@ public class DatabaseConnector {
                 System.out.println(rs.getString("cov_ind") + "\t" +
                         rs.getString("normal_ind")  + "\t" +
                         rs.getString("pneumonia_ind")+rs.getString("url"));
-                comments.add("||"+rs.getString("cov_ind") +","+
+                comments.add(rs.getString("cov_ind") +","+
                         rs.getString("normal_ind")   +","+
                         rs.getString("pneumonia_ind")+","+rs.getString("result")
-                        +","+rs.getString("url")+"||");
+                        +","+rs.getString("url"));
 
             }
 

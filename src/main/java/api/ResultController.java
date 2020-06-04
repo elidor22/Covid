@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/***
+ * Handles the HTTP requests and basically connects the whole program*/
 
 @RestController
 class ResultController {
@@ -26,7 +28,8 @@ class ResultController {
 	// tag::get-aggregate-root[]
 
 
-	@GetMapping("/users")
+	//Returns the list of results
+	@GetMapping("/result")
 	@ResponseBody
 	Resources<ArrayList> all() throws SQLException {
 
@@ -35,7 +38,9 @@ class ResultController {
 	}
 	// end::get-aggregate-root[]
 
-	@PostMapping("/users")
+	//Gets a post request from the user and returns the information based on the uploaded image
+	//Also handles the upload and calls the classifier class
+	@PostMapping("/result")
 	Result newUser(@RequestBody Result newResult) throws IOException, InterruptedException {
 		System.out.println(newResult.getCov_ind());
 		DatabaseConnector dbc = new DatabaseConnector();
@@ -57,8 +62,5 @@ class ResultController {
 	}
 
 
-	@DeleteMapping("/users/{id}")
-	void deleteUser(@PathVariable Long id) {
-		repository.deleteById(id);
-	}
+
 }

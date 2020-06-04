@@ -8,8 +8,11 @@ import java.util.Scanner;
 public class ClassifierWrapper {
     boolean classify = false;
     static String result;
+
+    //Runs the classification service and returns a list of values for each prognosis always sorted as covid, normal, pneumonia
     public  List<String>run(String url) throws IOException, InterruptedException {
         filePath(url);
+        //Calls the classifier python script that load the model and gets the output
         Process p = Runtime.getRuntime().exec("/home/elidor/test2/venv/bin/python /home/elidor/test2/loadModel.py");
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String ret = in.readLine();
@@ -27,6 +30,7 @@ public class ClassifierWrapper {
         return reader();
     }
 
+    // Creates the bridge, which is a txt file that gives the url to Python so that the two different parts of the program can communicate
      void filePath(String url) throws FileNotFoundException, UnsupportedEncodingException {
         String line =url;
         PrintWriter writer = new PrintWriter("theBridge.txt", "UTF-8");
@@ -35,9 +39,8 @@ public class ClassifierWrapper {
 
     }
 
+    //Reads the line from the python output and then parses the values to double and returns a list of string for the result
      List<String> reader(){
-
-
     String SplitBy = " ";
     String array[] =result.split(SplitBy);
 
@@ -53,6 +56,8 @@ public class ClassifierWrapper {
     List<String> ls = Arrays.asList(covid+"",normal+"",pneumonia+"");
     return ls;
     }
+
+    //Finds if the case is positive for covid or not
     boolean classify(double cov, double normal, double pneumonia){
     if(cov>normal&&cov>pneumonia)
         return true;
@@ -62,6 +67,7 @@ public class ClassifierWrapper {
 
     }
 
+    //Just to test possible changes in the code
     public static void main(String args[]) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
         ClassifierWrapper classifierWrapper = new ClassifierWrapper();
