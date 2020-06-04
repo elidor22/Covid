@@ -20,20 +20,20 @@ public class ReadData {
     List cases = new ArrayList();
     public ReadData(boolean isConcern) {
 
-        String csvFile = "/home/elidor/Documents/CovidProject/concern_levels.csv";
+        String csvFile = "/home/elidor/IdeaProjects/Covid/concern_levels.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
         //If we want concern data it provides the concern level csv
         if(isConcern){
-            csvFile = "/home/elidor/Documents/CovidProject/concern_levels.csv";
+            csvFile = "/home/elidor/IdeaProjects/Covid/concern_levels.csv";
             br = null;
             line = "";
             cvsSplitBy = ",";
         }
         //Else provide cases
         else if(!isConcern){
-            csvFile = "/home/elidor/Documents/CovidProject/new_cases.csv";
+            csvFile = "/home/elidor/IdeaProjects/Covid/new_cases.csv";
             br = null;
             line = "";
             cvsSplitBy = ",";

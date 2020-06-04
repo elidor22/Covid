@@ -22,9 +22,9 @@ public class DisplayImage {
          * If wanted, this can be used to display a newly created graphic*/
         //FileChooser fc = new FileChooser();
         //String path = fc.choose();
-        BufferedImage img=ImageIO.read(new File("/home/elidor/Documents/CovidProject/concern.jpg"));
-        BufferedImage img2=ImageIO.read(new File("/home/elidor/Documents/CovidProject/cases.jpg"));
-        BufferedImage img3=ImageIO.read(new File("/home/elidor/Documents/CovidProject/New_cases.jpg"));
+        BufferedImage img=ImageIO.read(new File("/home/elidor/IdeaProjects/Covid/SVGTimeSeriesChartDemo1.jpg"));
+        BufferedImage img2=ImageIO.read(new File("/home/elidor/IdeaProjects/Covid/SVGTimeSeriesChartDemo1.jpg"));
+        BufferedImage img3=ImageIO.read(new File("/home/elidor/IdeaProjects/Covid/SVGTimeSeriesChartDemo1.jpg"));
 
         ImageIcon icon=new ImageIcon(img);
         ImageIcon icon2=new ImageIcon(img2);
