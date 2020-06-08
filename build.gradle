@@ -44,5 +44,7 @@ dependencies {
     compile('org.apache.tomcat.embed:tomcat-embed-jasper:8.0.47')
     compile group: 'com.ibm.db2', name: 'jcc', version: '11.5.0.0'
     compile group: 'com.azure', name: 'azure-storage-blob', version: '12.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 
 }

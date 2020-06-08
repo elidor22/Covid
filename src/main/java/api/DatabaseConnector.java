@@ -40,6 +40,8 @@ public class DatabaseConnector {
                     candidateId = rs.getInt(1);
 
             }
+            conn.close();
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
@@ -48,6 +50,8 @@ public class DatabaseConnector {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+
+
         }
 
         return candidateId;
@@ -85,6 +89,7 @@ public class DatabaseConnector {
                         +","+rs.getString("url"));
 
             }
+            connection.close();
 
         }
         catch (ClassNotFoundException e)
