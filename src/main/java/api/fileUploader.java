@@ -29,9 +29,8 @@ public class fileUploader {
 
 // Create the container and return a container client object
         BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
-        Random rd = new Random(800000);
-        Random rd2 = new Random(871021540);
-        String fileName = "   "+rd.toString()+rd2.toString();
+
+        String fileName = getSaltString();
         // File localFile = new File(localPath + fileName);
 
 // Get a reference to a blob
@@ -97,6 +96,21 @@ public class fileUploader {
         fileUploader upload = new fileUploader();
 
         System.out.println(upload.upload("output.jpg","test"));
+
+    }
+
+
+    //Generates a random string
+    protected String getSaltString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 140) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
 
     }
 }
